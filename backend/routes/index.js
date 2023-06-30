@@ -1,9 +1,10 @@
 import express from 'express'
 import userRouters from './userRoutes.js'
 import authRouter from './authRoutes.js'
+import blogRouter from './blogRoutes.js'
 const router = express.Router()
 
 router.use('/api/users',userRouters)
 router.use('/auth', authRouter)
-
+router.use('/api/blogs', blogRouter)
 export default router
