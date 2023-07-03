@@ -20,9 +20,21 @@ router.post('/', async(req,res,next) => {
     }
 })
 
-router.delete('/:id', async(req,res,next) => {
+router.put('/', async(req,res,next) => {
     try {
-        const blog = await Blog.findByPk(req.params.id)
+        const updateInfo = req.body;
+        const blog = await Blog.findByPk(req.query.id);
+        const updatedBlog = await blog.update(updateInfo)
+        res.send(updatedBlog)
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.delete('/', async(req,res,next) => {
+    try {
+        const blog = await Blog.findByPk(req.query.id)
+        console.log(blog)
         if(!blog) {
             res.status(404).send({msg:'Blog not found!'})
         } else {

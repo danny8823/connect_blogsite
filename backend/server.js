@@ -11,7 +11,7 @@ const server = express()
 server.use(express.json())
 server.use(express.urlencoded({extended:true}))
 server.use('/', routers)
-// server.use('/api')
+
 const runServer = async () => {
     try {
         await db.authenticate()
