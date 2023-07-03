@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import { db } from './db/db.js'
-import {User} from './db/model/index.js'
+import {User, Blog} from './db/model/index.js'
 import routers from './routes/index.js'
 dotenv.config()
 
@@ -23,6 +23,10 @@ const runServer = async () => {
             email: 'admin@email.com'
 
         });
+        Blog.create({
+            title: 'Dummy',
+            content: 'dummy text'
+        })
         console.log('DB connected and synced')
         server.listen(port, () => {
             console.log("SERVER up and listening on port:", port)
