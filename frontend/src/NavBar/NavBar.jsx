@@ -25,7 +25,7 @@ export const NavBar = () => {
                     onHide={handleClose}
                 >
                     <Modal.Header closeButton>
-                        <Modal.Title>Register</Modal.Title>
+                        <Modal.Title>Login</Modal.Title>
                     </Modal.Header>
                     <Modal.Body><Login/></Modal.Body>
                     <Modal.Footer>

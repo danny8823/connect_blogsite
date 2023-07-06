@@ -10,8 +10,9 @@ export const Blogs = () => {
         dispatch(fetchBlogs())
     },[dispatch])
     
-    const blogs = useSelector((state) => state.blogs.blog)
-    console.log("=>", blogs)
+    const blogs = useSelector((state) => state.blogs)
+    console.log(blogs)
+    if (blogs[0] === undefined) return <h1>Page is loading...</h1>
     return (
         <div className ='bg-slate-400 h-screen w-7/12 m-auto'>
             {blogs && blogs.length ? (

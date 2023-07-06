@@ -5,32 +5,32 @@ import {useDispatch} from 'react-redux'
 import { postBlog } from "../Blogs/blogSlice";
 
 export const Post = () => {
-    const [title, setTitle] = useState(null)
-    const [content, setContent] = useState(null)
+    const [title, setTitle] = useState('')
+    const [content, setContent] = useState('')
 
     const dispatch = useDispatch()
 
-    const formHandler = (e) => {
+    const formHandler = async (e) => {
         e.preventDefault()
-        if(title === null || title === undefined || content === null || content === undefined) {
-            console.log('fields cannont be empty')
+        if(title === '' || content === '') {
+            console.log('fields cannot be empty')
         } else {
-        dispatch(postBlog({title, content}))
-        setTitle('')
-        setContent('')
+            dispatch(postBlog({title, content}))
+            setTitle('')
+            setContent('')
         }
     }
 
     return (
         <div>
-            <Form onSubmit= {formHandler}className = 'w-96 m-auto'>
+            <Form onSubmit= {formHandler} className = 'w-96 m-auto'>
                 <Form.Group>
                     <Form.Label>Title:</Form.Label>
-                    <Form.Control placeholder='Title' type='text' onChange={(e) => setTitle(e.target.value)}/>
+                    <Form.Control placeholder='Title' type='text' value = {title} onChange={(e) => setTitle(e.target.value)}/>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Content:</Form.Label>
-                    <Form.Control size = 'lg' as="textarea" placeholder='Content' type='text' onChange={(e) => setContent(e.target.value)}/>
+                    <Form.Control size = 'lg' as="textarea" placeholder='Content' value = {content} type='text' onChange={(e) => setContent(e.target.value)}/>
                 </Form.Group>
                 <Button type = "submit" variant = 'primary' className="mt-2">Post!</Button>
             </Form>
