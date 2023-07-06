@@ -8,6 +8,11 @@ dotenv.config()
 const SALT_ROUNDS = 5;
 
 const User = db.define('user', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
     type: Sequelize.STRING,
     allowNull: false
@@ -77,6 +82,5 @@ const hashPassword = async(user) => {
 
 User.beforeCreate(hashPassword)
 User.beforeUpdate(hashPassword)
-User.beforeBulkCreate(users => Promise.all(users.map(hashPassword)))
 
 export default User
