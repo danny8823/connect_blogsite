@@ -17,14 +17,14 @@ const runServer = async () => {
         await db.authenticate()
         await db.sync({force:true})
         User.create({
-            name:'admin',
+            username:'admin',
             password: process.env.ADMIN_PASS,
             isAdmin: true,
             email: 'admin@email.com'
 
         });
         User.create({
-            name: 'Danny',
+            username: 'Danny',
             password: '123',
             isAdmin: false,
             email: 'danny@email.com'
