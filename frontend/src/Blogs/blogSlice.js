@@ -10,14 +10,27 @@ export const fetchBlogs = createAsyncThunk('get/blogs', async() => {
     }
 })
 
+export const postBlog = createAsyncThunk('post/blog', async({title, content}) => {
+    try {
+        const {data} = axios.post('/api/blogs', {title,content})
+        return data
+    } catch(error) {
+        console.error(error)
+    }
+})
+
 const blogsSlice = createSlice({
     name: 'blogs',
-    initialState: {},
+    initialState: {
+        blog: []
+    },
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchBlogs.fulfilled, (state,action) => {
-            console.log(action.payload)
-            state.blogs = action.payload
+            state.blog = action.payload
+        })
+        builder.addCase(postBlog.fulfilled, (state,action) => {
+            state.blog.push(action.payload)
         })
     }
 })
