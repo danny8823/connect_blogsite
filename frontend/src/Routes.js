@@ -4,6 +4,7 @@ import { Blogs } from './Blogs/Blogs'
 import { Post } from './Post/Post'
 import { Login } from './Login/Login'
 import { SingleBlog } from './SingleBlog/SingleBlogPage'
+import { Profile } from './Profile/Profile'
 
 export const AppRoutes = () => {
     return (
@@ -13,6 +14,7 @@ export const AppRoutes = () => {
                 <Route path = '/:id' element = {<SingleBlog/>}/>
                 <Route path = '/post' element={<Post/>}/>
                 <Route path = '/login' element={<Login/>}/>
+                <Route path = '/profile' element = {<Profile/>}/>
             </Routes>
         </div>
     )

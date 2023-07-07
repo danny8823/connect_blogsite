@@ -13,10 +13,21 @@ router.get('/', async(req,res,next) => {
     }
 })
 
+router.get('/user/:id', async(req,res,next) => {
+    try {
+        const blogs = await Blog.findAll({
+            where: {
+                userId: req.params.id
+            }
+        })
+        res.send(blogs)
+    } catch(error) {
+        next(error)
+    }
+})
+
 router.get('/:id', async(req,res,next) => {
     try {
-        console.log(req.body)
-        console.log(req.params)
         const blog = await Blog.findByPk(req.params.id, {
             include: [User]
         })
@@ -40,10 +51,10 @@ router.post('/', async(req,res,next) => {
     }
 })
 
-router.put('/', async(req,res,next) => {
+router.put('/:id', async(req,res,next) => {
     try {
         const updateInfo = req.body;
-        const blog = await Blog.findByPk(req.query.id);
+        const blog = await Blog.findByPk(req.params.id);
         const updatedBlog = await blog.update(updateInfo)
         res.send(updatedBlog)
     } catch (error) {
@@ -51,16 +62,11 @@ router.put('/', async(req,res,next) => {
     }
 })
 
-router.delete('/', async(req,res,next) => {
+router.delete('/:id', async(req,res,next) => {
     try {
-        const blog = await Blog.findByPk(req.query.id)
-        console.log(blog)
-        if(!blog) {
-            res.status(404).send({msg:'Blog not found!'})
-        } else {
-            blog.destroy()
-            res.send("delete successful")
-        }        
+        const blog = await Blog.findByPk(req.params.id)
+        await blog.destroy()
+        res.send(blog)
     } catch(error) {
         next(error)
     }

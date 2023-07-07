@@ -39,6 +39,7 @@ export const NavBar = () => {
                     <Link className = 'px-5' to ='/post'>Post</Link>
                     <Link className = 'px-5' onClick={handleLogout}>Logout</Link>
                     <small>{me.username}</small>
+                    <Link className = 'px-5' to ='/profile'>Profile</Link>
                 </div>
             ): (
                 <div className = 'flex justify-start bg-slate-300 h-10 items-center'>
