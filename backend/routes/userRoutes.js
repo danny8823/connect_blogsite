@@ -4,7 +4,8 @@ const router = express.Router()
 
 router.get('/', async(req,res,next) => {
     try {
-        const user = await User.findAll()
+        const {id} = req.body
+        const user = await User.findByPk(id)
         res.send(user)
     } catch(error) {
         next(error)

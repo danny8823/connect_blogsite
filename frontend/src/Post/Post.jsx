@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import Form from 'react-bootstrap/Form'
 import {Button} from 'react-bootstrap'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { postBlog } from "../Blogs/blogSlice";
 
 export const Post = () => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
+    const user = useSelector((state) => state.me.me)
+    
     const dispatch = useDispatch()
 
     const formHandler = async (e) => {
@@ -15,7 +17,7 @@ export const Post = () => {
         if(title === '' || content === '') {
             console.log('fields cannot be empty')
         } else {
-            dispatch(postBlog({title, content}))
+            dispatch(postBlog({title, content, userid: user.id}))
             setTitle('')
             setContent('')
         }

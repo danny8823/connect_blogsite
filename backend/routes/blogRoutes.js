@@ -1,19 +1,39 @@
 import express from 'express'
-import { Blog } from '../db/model/index.js'
+import { Blog, User } from '../db/model/index.js'
 const router = express.Router()
 
 router.get('/', async(req,res,next) => {
     try{
-        const blog = await Blog.findAll()
+        const blog = await Blog.findAll({
+            include: [User]
+        })
         res.send(blog)
     } catch(error) {
         next(error)
     }
 })
 
+router.get('/:id', async(req,res,next) => {
+    try {
+        console.log(req.body)
+        console.log(req.params)
+        const blog = await Blog.findByPk(req.params.id, {
+            include: [User]
+        })
+        res.send(blog)
+    } catch (error) {
+        next(error)
+    }
+})
+
 router.post('/', async(req,res,next) => {
     try {
-        const blog = await Blog.create(req.body)
+        const {title, content, userid } = req.body
+        const blog = await Blog.create({
+            title: title,
+            content: content,
+            userId: userid
+        })
         res.send(blog)
     } catch(error) {
         next(error)

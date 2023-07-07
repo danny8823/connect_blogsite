@@ -24,7 +24,7 @@ export const NavBar = () => {
     const handleShow2 = () => setShow2(true)
 
     const me = useSelector((state) => state.me.me)
-
+    
     const handleLogout = () => {
         dispatch(logout())
         navigate('/')
