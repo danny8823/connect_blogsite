@@ -11,7 +11,7 @@ import { logout } from "../Login/authSlice";
 export const NavBar = () => {
     const loggedIn = useSelector((state) => !!state.me.me.id)
     const admin = useSelector((state) => !!state.me.isAdmin)
-
+    console.log(loggedIn)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 

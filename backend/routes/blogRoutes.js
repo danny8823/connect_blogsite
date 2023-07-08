@@ -15,9 +15,10 @@ router.get('/', async(req,res,next) => {
 
 router.get('/user/:id', async(req,res,next) => {
     try {
+        const userId = req.params.id
         const blogs = await Blog.findAll({
             where: {
-                userId: req.params.id
+                userId: userId
             }
         })
         res.send(blogs)
@@ -33,6 +34,21 @@ router.get('/:id', async(req,res,next) => {
         })
         res.send(blog)
     } catch (error) {
+        next(error)
+    }
+})
+
+router.delete('/:id', async(req,res,next) => {
+    try {
+        const {id} = req.params
+        const blog = await Blog.findByPk(id)
+        if(blog === null) {
+            res.send('nothing to destroy')
+        } else {
+            await blog.destroy()
+            res.send(blog)
+        }
+    } catch(error) {
         next(error)
     }
 })

@@ -41,6 +41,7 @@ export const seed = async () => {
             userId: 2
         })
         console.log('DB connected and synced')
+        // db.close()
     } catch (error) {
         throw new Error(error)
     }

@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { fetchUserBlogs } from "./profileSlice";
-
+import { deleteBlog, fetchUserBlogs } from "./profileSlice";
+import {Button} from 'react-bootstrap'
 export const Profile = () => {
     const dispatch = useDispatch()
 
     const me = useSelector((state) => state.me.me)
-    useEffect(() => {
-        dispatch(fetchUserBlogs(me.id))
-    },[dispatch])
-
+    
     const blogs = useSelector((state) => state.userBlogs)
     
+    const clickHandler = (id) => {
+         dispatch(deleteBlog(id))
+    }
+    useEffect(() => {
+            dispatch(fetchUserBlogs(me.id))
+        },[dispatch, me.id])
+
     return (
         <div>
             {blogs && blogs.length ? (
                 blogs.map((blog) => (
-                    <div>
+                    <div key = {blog.id}>
                         <h1>{blog.title}</h1>
                         <p>{blog.content}</p>
+                        <Button variant = 'primary' onClick={() =>clickHandler(blog.id)}>Delete post!</Button>
                     </div>
                 ))
             ): (
