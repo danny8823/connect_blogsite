@@ -25,11 +25,7 @@ export const deleteBlog = createAsyncThunk('delete/userblog', async(id) => {
 const UserBlogs = createSlice({
     name: 'userblogs',
     initialState: {},
-    reducers: {
-        delete(state,action) {
-
-        }
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchUserBlogs.fulfilled, (state, action) => {
             return action.payload

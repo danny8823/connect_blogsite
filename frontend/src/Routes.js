@@ -7,6 +7,7 @@ import { SingleBlog } from './SingleBlog/SingleBlogPage'
 import { Profile } from './Profile/Profile'
 import { useDispatch } from 'react-redux'
 import { me } from './Login/authSlice'
+import { EditBlog } from './EditBlog/Edit'
 
 export const AppRoutes = () => {
     const dispatch = useDispatch()
@@ -21,6 +22,7 @@ export const AppRoutes = () => {
                 <Route path = '/post' element={<Post/>}/>
                 <Route path = '/login' element={<Login/>}/>
                 <Route path = '/profile' element = {<Profile/>}/>
+                <Route path = '/edit' element = {<EditBlog/>}/>
             </Routes>
         </div>
     )

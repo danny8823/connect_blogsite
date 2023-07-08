@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { fetchBlogs } from "./blogSlice";
 import {Link} from 'react-router-dom'
+import {Spinner} from 'react-bootstrap'
+
 export const Blogs = () => {
     const dispatch = useDispatch()
 
@@ -13,7 +15,11 @@ export const Blogs = () => {
 
     const blogs = useSelector((state) => state.blogs)
 
-    if (blogs[0] === undefined) return <h1>Page is loading...</h1>
+    if (blogs[0] === undefined) return (
+        <div className = 'flex m-auto'>
+            <Spinner animation="border" role="status"/>
+        </div>
+        )
     
     return (
         <div className ='bg-slate-400 h-auto w-7/12 m-auto'>
