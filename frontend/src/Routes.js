@@ -14,6 +14,7 @@ export const AppRoutes = () => {
     useEffect(() => {
         dispatch(me())
     },[dispatch])
+    
     return (
         <div>
             <Routes>

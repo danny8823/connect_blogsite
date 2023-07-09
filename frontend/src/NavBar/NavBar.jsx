@@ -8,7 +8,6 @@ import { Login } from "../Login/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Login/authSlice";
 import LogoSvg from '../Logo/Connect_logo.svg'
-import Name_Icon from '../Logo/name_icon.svg'
 
 export const NavBar = () => {
     const loggedIn = useSelector((state) => !!state.me.me.id)

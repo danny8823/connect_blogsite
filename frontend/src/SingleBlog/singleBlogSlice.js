@@ -11,6 +11,18 @@ export const fetchBlog = createAsyncThunk('fetch/blog', async (blogid) => {
     }
 })
 
+export const editBlog = createAsyncThunk('edit/blog', async({blogid, title, content}) => {
+    try {
+        const {id} = blogid
+        const {data} = await axios.put(`api/blogs/${id}`, {
+            id, title, content
+        })
+        return data
+    } catch(error) {
+        throw new Error(error)
+    }
+})
+
 const singleBlogSlice = createSlice({
     name: 'single_blog',
     initialState: {},
@@ -18,6 +30,9 @@ const singleBlogSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(fetchBlog.fulfilled, (state,action) => {
             return action.payload
+        })
+        builder.addCase(editBlog.fulfilled, (state, action) => {
+            state = action.payload
         })
     }
 })
