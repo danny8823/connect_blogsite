@@ -34,13 +34,13 @@ export const NavBar = () => {
     return (
         <div>
             {loggedIn ? (
-                <div className = 'flex justify-start bg-sky-300 h-12 items-center'>
+                <div className = 'flex justify-start bg-sky-300 h-12 items-center w-screen'>
                     <img src = {LogoSvg} alt = 'connect blog logo' className = 'w-40 h-auto px-10'/>
                     <Link className = 'px-5 no-underline text-black' to ='/'>Blogs</Link>
                     <Link className = 'px-5 no-underline text-black' to ='/post'>Post</Link>
                     <Link className = 'px-5 no-underline text-black' onClick={handleLogout}>Logout</Link>
                     <Link className = 'px-5 no-underline text-black' to ='/profile'>Profile</Link>
-                    <small>Logged in as: {me.username}</small>
+                    <small className = 'w-42'>Logged in as: {me.username}<img className = 'w-12'src = {me.image} alt = 'profile'/></small>
                 </div>
             ): (
                 <div className = 'flex justify-start bg-sky-300 h-12 items-center'>

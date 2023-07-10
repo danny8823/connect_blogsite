@@ -5,6 +5,7 @@ import { deleteBlog, fetchUserBlogs } from "./profileSlice";
 import {Button,Card} from 'react-bootstrap'
 import {Link, useNavigate} from 'react-router-dom'
 import dummy from '../Logo/dummy-photo.jpg'
+import { UpdateUser } from "../UpdateUser/updateUser";
 export const Profile = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -27,22 +28,24 @@ export const Profile = () => {
 
     return (
         <div>
-            <div>
-                <Card style = {{width: '18rem'}}>
-                    <Card.Img variant="top" src={dummy}/>
+            <div className = 'mt-10 mb-10'>
+                <Card className = 'm-auto'style = {{width: '18rem'}}>
+                    <Card.Img variant="top" src={me.image}/>
                     <Card.Body>
                         <Card.Title>{me.username}</Card.Title>
                         <Card.Text>{me.email}</Card.Text>
                     </Card.Body>
                 </Card>
+                <h2>Update profile</h2>
+                <UpdateUser username={me.username} useremail={me.email} image={me.image}/>
             </div>
-            <div>
+            <div className = 'w-96 m-auto'>
                 {blogs && blogs.length ? (
                     blogs.map((blog) => (
-                        <div key = {blog.id}>
+                        <div key = {blog.id} className = 'border-b-2'>
                             <h1>{blog.title}</h1>
                             <p>{blog.content}</p>
-                            <Button variant = 'primary' onClick={() =>clickHandler(blog.id)}>Delete post!</Button>
+                            <Button className = 'm-2' variant = 'primary' onClick={() =>clickHandler(blog.id)}>Delete post</Button>
                             <Button variant = 'secondary' onClick = {() => editHandler(blog.id)}>Edit post</Button>
                         </div>
                     ))

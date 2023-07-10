@@ -27,6 +27,11 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     allowNull: false
+  },
+  image: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    defaultValue: 'https://dummyimage.com/640x360/fff/aaa'
   }
 })
 

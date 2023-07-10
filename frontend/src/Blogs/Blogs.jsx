@@ -22,13 +22,13 @@ export const Blogs = () => {
         )
     
     return (
-        <div className ='bg-black h-auto w-7/12 m-auto'>
+        <div className ='bg-slate-800 h-auto w-7/12 m-auto'>
             {blogs && blogs.length ? (
                 blogs.map((blog) => (
-                    <div key = {blog.id} className = 'w-96 text-center border-b-2 text-white m-auto'>
-                        {blog.user && blog.user.username && <p>{blog.user.username}</p>}
-                        <Link className = 'no-underline text-white' to = {`/${blog.id}`}><h2>{blog.title}</h2></Link>
+                    <div key = {blog.id} className = 'w-96 pt-10 border-b-2 text-white m-auto'>
+                        <Link className = 'no-underline text-white' to = {`/${blog.id}`}><h2 className = 'text-center'>{blog.title}</h2></Link>
                         <p>{blog.content}</p>
+                        {blog.user && blog.user.username && <p>Author: {blog.user.username}</p>}
                     </div>
                 ))
             ): (
