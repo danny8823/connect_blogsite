@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 export const UpdateUser = ({username, useremail, image}) => {
     const [userName, setUserName] = useState(username)
@@ -9,7 +10,8 @@ export const UpdateUser = ({username, useremail, image}) => {
     const formHandler = (e) => {
         e.preventDefault()
     }
-
+    const me = useSelector((state) => state.me.me)
+    console.log('==>',me)
     return (
         <div>
             <Form onSubmit={formHandler}>

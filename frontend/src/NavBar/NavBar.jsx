@@ -23,8 +23,6 @@ export const NavBar = () => {
     const [ show2, setShow2] = useState(false)
     const handleClose2 = () => setShow2(false)
     const handleShow2 = () => setShow2(true)
-
-    const me = useSelector((state) => state.me.me)
     
     const handleLogout = () => {
         dispatch(logout())
@@ -40,7 +38,6 @@ export const NavBar = () => {
                     <Link className = 'px-5 no-underline text-black' to ='/post'>Post</Link>
                     <Link className = 'px-5 no-underline text-black' onClick={handleLogout}>Logout</Link>
                     <Link className = 'px-5 no-underline text-black' to ='/profile'>Profile</Link>
-                    <small className = 'w-42'>Logged in as: {me.username}<img className = 'w-12'src = {me.image} alt = 'profile'/></small>
                 </div>
             ): (
                 <div className = 'flex justify-start bg-sky-300 h-12 items-center'>
