@@ -7,6 +7,7 @@ import {Spinner} from 'react-bootstrap'
 import { SideBar } from "../Sidebar/SideBar";
 import heartIcon from '../Logo/heart.png'
 import saveIcon from '../Logo/save.png'
+import { addFavs } from "../Sidebar/favsSlice";
 
 export const Blogs = () => {
     const dispatch = useDispatch()
@@ -15,18 +16,19 @@ export const Blogs = () => {
         dispatch(fetchBlogs())
     },[dispatch])
 
-
+    const me = useSelector((state) => state.me.me)
     const blogs = useSelector((state) => state.blogs)
+
     if (blogs[0] === undefined) return (
         <div className = 'flex m-auto'>
             <Spinner animation="border" role="status"/>
         </div>
         )
     
-    const favoriteHandler = (id) => {
-        console.log(id)
+    const favoriteHandler = async (title, content, userId, blogId) => {
+       dispatch(addFavs({title,content,userId, blogId}))
     }
-    
+
     return (
         <div className = 'flex w-screen'>
             <div className ='h-auto w-8/12 m-auto'>
@@ -37,7 +39,7 @@ export const Blogs = () => {
                             <Link className = 'no-underline text-black no-underline' to = {`/${blog.id}`}><h2 className = 'text-center'>{blog.title}</h2></Link>
                             <p>{blog.content}</p>
                             <div className = 'flex w-96 justify-end'>
-                                <img  onClick={() => favoriteHandler(blog.id)} className = 'w-10 h-10' src = {heartIcon} alt = 'Freepik heart icon'/>
+                                <img  onClick={() => favoriteHandler(blog.title, blog.content, me.id, blog.id)} className = 'w-10 h-10' src = {heartIcon} alt = 'Freepik heart icon'/>
                                 <img  className = 'w-10 h-10' src = {saveIcon} alt = 'Freepik save icon'/>
                             </div>
                         </div>

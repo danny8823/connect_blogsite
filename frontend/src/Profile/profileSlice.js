@@ -33,7 +33,6 @@ const UserBlogs = createSlice({
         })
         builder.addCase(deleteBlog.fulfilled, (state,action) => {
             const deleted = state.filter((blog) => blog.id !== action.payload.id)
-            console.log(action.payload)
             return deleted
         })
     }
