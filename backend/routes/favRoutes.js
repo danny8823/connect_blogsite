@@ -5,8 +5,12 @@ const router = express.Router()
 
 router.get('/', async(req,res,next) => {
     try {
+        const id = req.query.value
+        console.log('router', id)
         const fav = await Favorites.findAll({
-            include: [User]
+            where: {
+                userId: id
+            }
         })
         res.send(fav)
     } catch(error) {
@@ -16,10 +20,11 @@ router.get('/', async(req,res,next) => {
 
 router.post('/', async(req,res,next) => {
     try {
-        const {blogid, userid } = req.body
+        const {title, content, userId } = req.body
         const fav = await Favorites.create({
-            blogId: blogid,
-            userId: userid
+            title: title,
+            content: content,
+            userId: userId
         })
         res.send(fav)
     } catch(error) {

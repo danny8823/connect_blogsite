@@ -2,9 +2,13 @@ import { Sequelize } from "sequelize";
 import { db } from "../db.js";
 
 const Favorites = db.define('favorites', {
-    blogId: {
-        type: Sequelize.INTEGER,
-        allowNull: false 
+    title: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    content: {
+        type: Sequelize.TEXT,
+        allowNull: false
     }
 })
 

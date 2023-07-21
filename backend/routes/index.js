@@ -10,4 +10,5 @@ router.use('/api/users',userRouters)
 router.use('/auth', authRouter)
 router.use('/api/blogs', blogRouter)
 router.use('/api/favs', favsRouter)
+
 export default router
