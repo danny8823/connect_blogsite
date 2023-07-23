@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { fetchBlogs } from "./blogSlice";
+import { fetchBlogs } from "../Slices/blogSlice";
 import {Link} from 'react-router-dom'
 import {Spinner} from 'react-bootstrap'
 import { SideBar } from "../Sidebar/SideBar";
 import heartIcon from '../Logo/heart.png'
 import saveIcon from '../Logo/save.png'
-import { addFavs } from "../Sidebar/favsSlice";
+import { addFavs } from "../Slices/favsSlice";
 
 export const Blogs = () => {
     const dispatch = useDispatch()

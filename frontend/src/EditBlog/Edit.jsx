@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { editBlog, fetchBlog } from "../SingleBlog/singleBlogSlice";
+import { editBlog, fetchBlog } from "../Slices/singleBlogSlice";
 import { Form } from "react-bootstrap";
 import {Button} from 'react-bootstrap'
 

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Form from 'react-bootstrap/Form'
 import { Button } from "react-bootstrap";
 import {useDispatch} from 'react-redux'
-import { authenticate } from "./authSlice";
+import { authenticate } from "../Slices/authSlice";
+
 export const Login = ({handleClose}) => {
     const dispatch = useDispatch()
 

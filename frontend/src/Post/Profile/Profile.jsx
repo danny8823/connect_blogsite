@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from "react";
 import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { deleteBlog, fetchUserBlogs } from "./profileSlice";
+import { deleteBlog, fetchUserBlogs } from "../../Slices/profileSlice";
 import {Button,Card} from 'react-bootstrap'
 import {Link, useNavigate} from 'react-router-dom'
-import dummy from '../Logo/dummy-photo.jpg'
-import { UpdateUser } from "../UpdateUser/updateUser";
+import { UpdateUser } from "../../UpdateUser/updateUser";
+
 export const Profile = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()

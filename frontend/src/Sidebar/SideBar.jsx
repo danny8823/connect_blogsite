@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { delFav, fetchFavs } from "./favsSlice";
+import { delFav, fetchFavs } from "../Slices/favsSlice";
 
 export const SideBar = () => {
     const loggedIn = useSelector((state) => !!state.me.me.id)

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from 'react-bootstrap/Form'
 import {Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
-import { postBlog } from "../Blogs/blogSlice";
+import { postBlog } from "../Slices/blogSlice";
 
 export const Post = () => {
     const [title, setTitle] = useState('')

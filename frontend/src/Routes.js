@@ -4,9 +4,9 @@ import { Blogs } from './Blogs/Blogs'
 import { Post } from './Post/Post'
 import { Login } from './Login/Login'
 import { SingleBlog } from './SingleBlog/SingleBlogPage'
-import { Profile } from './Profile/Profile'
+import { Profile } from './Post/Profile/Profile'
 import { useDispatch } from 'react-redux'
-import { me } from './Login/authSlice'
+import { me } from './Slices/authSlice'
 import { EditBlog } from './EditBlog/Edit'
 
 export const AppRoutes = () => {

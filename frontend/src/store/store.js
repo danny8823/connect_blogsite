@@ -1,9 +1,10 @@
 import {configureStore} from '@reduxjs/toolkit'
-import blogSlice from '../Blogs/blogSlice'
-import authSlice from '../Login/authSlice'
-import singleBlogSlice from '../SingleBlog/singleBlogSlice'
-import UserBlogs from '../Profile/profileSlice'
-import favsSlice from '../Sidebar/favsSlice'
+import blogSlice from '../Slices/blogSlice'
+import authSlice from '../Slices/authSlice'
+import singleBlogSlice from '../Slices/singleBlogSlice'
+import UserBlogs from '../Slices/profileSlice'
+import favsSlice from '../Slices/favsSlice'
+import commentSlice from '../Slices/commentSlice'
 
 const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
         singleBlog: singleBlogSlice,
         me: authSlice,
         userBlogs: UserBlogs,
-        favs: favsSlice
+        favs: favsSlice,
+        comments: commentSlice
     }
 })
 

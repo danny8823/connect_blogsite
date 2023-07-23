@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Register } from "../Register/Register";
 import { Login } from "../Login/Login";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../Login/authSlice";
+import { logout } from "../Slices/authSlice";
 import LogoSvg from '../Logo/Connect_logo.svg'
 
 export const NavBar = () => {
