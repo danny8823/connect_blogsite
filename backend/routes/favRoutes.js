@@ -6,7 +6,6 @@ const router = express.Router()
 router.get('/', async(req,res,next) => {
     try {
         const id = req.query.value
-        console.log('router', id)
         const fav = await Favorites.findAll({
             where: {
                 userId: id
@@ -20,11 +19,12 @@ router.get('/', async(req,res,next) => {
 
 router.post('/', async(req,res,next) => {
     try {
-        const {title, content, userId } = req.body
+        const {title, content, userId, blogId } = req.body
         const fav = await Favorites.create({
             title: title,
             content: content,
-            userId: userId
+            userId: userId,
+            blogId: blogId
         })
         res.send(fav)
     } catch(error) {
@@ -32,4 +32,18 @@ router.post('/', async(req,res,next) => {
     }
 })
 
+router.delete('/:id', async(req,res,next) => {
+    try {
+        const {id} = req.params
+        const fav = await Favorites.findByPk(id)
+        if(fav === null) {
+            res.send('nothing to destroy')
+        } else {
+            await fav.destroy()
+            res.send(fav)
+        }
+    } catch(error) {
+        next(error)
+    }
+})
 export default router

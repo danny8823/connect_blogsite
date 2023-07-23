@@ -38,7 +38,12 @@ const favoritesSlice = createSlice({
             state.favs = action.payload
         })
         builder.addCase(addFavs.fulfilled, (state,action) => {
-            state.favs.push(action.payload)
+            if(action.payload.userId) {
+                state.favs.push(action.payload)
+            } else {
+                return window.alert('Must have an account to favorite')
+            }
+            
         })
         builder.addCase(delFav.fulfilled, (state,action) => {
             const deleted = state.favs.filter((blog) => blog.id !== action.payload.id)

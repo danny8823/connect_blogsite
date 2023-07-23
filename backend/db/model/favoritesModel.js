@@ -9,6 +9,10 @@ const Favorites = db.define('favorites', {
     content: {
         type: Sequelize.TEXT,
         allowNull: false
+    },
+    blogId : {
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 })
 
