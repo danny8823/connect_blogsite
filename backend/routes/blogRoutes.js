@@ -59,7 +59,7 @@ router.post('/', async(req,res,next) => {
         const blog = await Blog.create({
             title: title,
             content: content,
-            userId: userid
+            userId: userid,
         })
         res.send(blog)
     } catch(error) {

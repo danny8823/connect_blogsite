@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { delFav, fetchFavs } from "../Slices/favsSlice";
-
+import axios from "axios";
 export const SideBar = () => {
     const loggedIn = useSelector((state) => !!state.me.me.id)
     const me = useSelector((state) => state.me.me)
@@ -13,8 +13,8 @@ export const SideBar = () => {
         dispatch(fetchFavs(me.id))
     },[dispatch, me])
 
-    const deleteHandler = (id) => {
-        dispatch(delFav(id))
+    const deleteHandler = async(id) => {
+        await dispatch(delFav(id))
     }
 
     return (

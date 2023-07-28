@@ -41,7 +41,17 @@ export const seed = async () => {
             userId: 2
         })
         await Comment.create({
-            comment: 'This is a test comment',
+            comment: 'This is a test comment1',
+            blogId: 1,
+            userId: 2
+        })
+        await Comment.create({
+            comment: 'This is a test comment2',
+            blogId: 2,
+            userId: 2
+        })
+        await Comment.create({
+            comment: 'This is a test comment3',
             blogId: 1,
             userId: 2
         })

@@ -11,7 +11,7 @@ export const UpdateUser = ({username, useremail, image}) => {
         e.preventDefault()
     }
     const me = useSelector((state) => state.me.me)
-    console.log('==>',me)
+    
     return (
         <div>
             <Form onSubmit={formHandler}>

@@ -6,14 +6,19 @@ import { Form } from "react-bootstrap";
 import {Button} from 'react-bootstrap'
 
 export const EditBlog = () => {
-    const {id }= useParams()
+    const {id} = useParams()
+    console.log('==<id>' , id)
     const dispatch = useDispatch()
+
     const [newTitle, setNewTitle] = useState(null)
     const [newContent, setNewContent] = useState(null)
-    const formHandler = (id) => {
-        dispatch(editBlog({id, newTitle, newContent}))
+
+    const formHandler = async(e) => {
+        e.preventDefault()
+        console.log(newTitle, newContent)
+        await dispatch(editBlog({blogid:id, title:newTitle, content:newContent}))
     }
-    console.log('hi', id)
+
     return (
         <div>
             <Form onSubmit={formHandler}>

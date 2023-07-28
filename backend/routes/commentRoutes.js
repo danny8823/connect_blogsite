@@ -7,7 +7,14 @@ const router = express.Router()
 
 router.get('/', async(req,res,next) => {
     try {
+        const id = req.query.value
+        if(!id) {
+            return res.status(400).send("No blog id!")
+        }
         const comment = await Comment.findAll({
+            where: {
+                blogId: id
+            },
             include: [User]
         })
         res.send(comment)
@@ -18,11 +25,36 @@ router.get('/', async(req,res,next) => {
 
 router.post('/', async(req,res,next) => {
     try {  
-        const [comm] = req.body 
+        const {comment, blogid, userid} = req.body 
+    
         const commentPost = await Comment.create({
-              comment: comm
+              comment: comment,
+              blogId: blogid,
+              userId: userid
         })
         res.send(commentPost)
+    } catch(error) {
+        next(error)
+    }
+})
+
+router.put('/:id', async(req,res,next) => {
+    try {
+        const {id} = req.params
+        const comment = await Comment.findByPk(id)
+        const update = await comment.update(req.body)
+        res.send(update)
+    } catch(error) {
+        next(error)
+    }
+})
+
+router.delete(':id', async(req,res,next) => {
+    try {
+        const {id} = req.params
+        const comment = await Comment.findByPk(id)
+        const del = await comment.destroy()
+        res.send(del)
     } catch(error) {
         next(error)
     }

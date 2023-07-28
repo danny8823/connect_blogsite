@@ -16,4 +16,18 @@ const Favorites = db.define('favorites', {
     }
 })
 
+Favorites.beforeCreate(async (favorite, options) => {
+    const existingFavorite = await Favorites.findOne({
+      where: {
+        blogId: favorite.blogId,
+        userId: favorite.userId,
+      },
+      raw: true,
+    });
+  
+    if (existingFavorite) {
+      throw new Error('Duplicate favorite entry');
+    }
+  });
+  
 export default Favorites

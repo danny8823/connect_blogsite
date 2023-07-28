@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchBlog = createAsyncThunk('fetch/blog', async (blogid) => {
     try {
         const {id} = blogid
-        const {data} = await axios.get(`api/blogs/${id}`)
+        const {data} = await axios.get(`/api/blogs/${id}`)
         return data
     } catch(error) {
         throw new Error(error)
@@ -13,8 +13,8 @@ export const fetchBlog = createAsyncThunk('fetch/blog', async (blogid) => {
 
 export const editBlog = createAsyncThunk('edit/blog', async({blogid, title, content}) => {
     try {
-        const {id} = blogid
-        const {data} = await axios.put(`api/blogs/${id}`, {
+        const id = blogid
+        const {data} = await axios.put(`/api/blogs/${id}`, {
             id, title, content
         })
         return data

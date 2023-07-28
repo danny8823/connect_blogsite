@@ -19,12 +19,12 @@ router.get('/', async(req,res,next) => {
 
 router.post('/', async(req,res,next) => {
     try {
-        const {title, content, userId, blogId } = req.body
+        const {title, content, userId, blogId} = req.body
         const fav = await Favorites.create({
             title: title,
             content: content,
             userId: userId,
-            blogId: blogId
+            blogId: blogId,
         })
         res.send(fav)
     } catch(error) {

@@ -14,6 +14,7 @@ Comment.belongsTo(Blog)
 
 User.hasMany(Comment)
 Comment.belongsTo(User)
+
 export {
     Blog,
     User,

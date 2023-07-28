@@ -12,8 +12,8 @@ export const fetchFavs = createAsyncThunk('fetch/favs', async(id) => {
 
 export const addFavs = createAsyncThunk('add/favs', async({title, content, userId, blogId}) => {
     try {
-        const {data} = await axios.post(`/api/favs`, {title, content, userId, blogId})
-        return data
+            const {data} = await axios.post(`/api/favs`, {title, content, userId, blogId})
+            return data
     } catch(error) {
         throw new Error(error)
     }
@@ -27,6 +27,7 @@ export const delFav = createAsyncThunk('delete/fav', async(id) => {
         throw new Error(error)
     }
 })
+
 const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: {
@@ -38,12 +39,12 @@ const favoritesSlice = createSlice({
             state.favs = action.payload
         })
         builder.addCase(addFavs.fulfilled, (state,action) => {
+            console.log(action.payload.userId)
             if(action.payload.userId) {
                 state.favs.push(action.payload)
             } else {
                 return window.alert('Must have an account to favorite')
             }
-            
         })
         builder.addCase(delFav.fulfilled, (state,action) => {
             const deleted = state.favs.filter((blog) => blog.id !== action.payload.id)
