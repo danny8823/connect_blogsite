@@ -25,10 +25,11 @@ router.get('/', async(req,res,next) => {
 
 router.post('/', async(req,res,next) => {
     try {  
-        const {comment, blogid, userid} = req.body 
+        const {comment, blogid, userid, username} = req.body 
     
         const commentPost = await Comment.create({
               comment: comment,
+              username: username,
               blogId: blogid,
               userId: userid
         })
@@ -49,9 +50,10 @@ router.put('/:id', async(req,res,next) => {
     }
 })
 
-router.delete(':id', async(req,res,next) => {
+router.delete('/:id', async(req,res,next) => {
     try {
         const {id} = req.params
+        console.log(id)
         const comment = await Comment.findByPk(id)
         const del = await comment.destroy()
         res.send(del)

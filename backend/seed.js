@@ -42,18 +42,27 @@ export const seed = async () => {
         })
         await Comment.create({
             comment: 'This is a test comment1',
+            username: 'Danny',
             blogId: 1,
             userId: 2
         })
         await Comment.create({
             comment: 'This is a test comment2',
+            username: 'Danny',
             blogId: 2,
             userId: 2
         })
         await Comment.create({
             comment: 'This is a test comment3',
+            username: 'Danny',
             blogId: 1,
             userId: 2
+        })
+        await Comment.create({
+            comment: 'This is a test comment3',
+            username: 'Admin',
+            blogId: 1,
+            userId: 1
         })
         console.log('DB connected and synced')
         // db.close()

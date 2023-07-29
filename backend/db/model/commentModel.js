@@ -5,6 +5,10 @@ const Comment = db.define('comment', {
     comment: {
         type: Sequelize.TEXT,
         allowNull: false
+    },
+    username : {
+        type: Sequelize.STRING,
+        allowNull: false,
     }
 })
 
