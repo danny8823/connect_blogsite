@@ -3,10 +3,9 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useDispatch } from "react-redux";
 import { authenticate } from "../Slices/authSlice";
-
+import { useDropzone } from "react-dropzone"
 export const Register = ({handleClose2}) => {
      const dispatch = useDispatch()
-
      const [email, setEmail] = useState('')
      const [username, setUserName] = useState('')
      const [password, setPassword] = useState('')

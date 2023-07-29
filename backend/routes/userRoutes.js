@@ -12,4 +12,16 @@ router.get('/', async(req,res,next) => {
     }
 })
 
+router.put('/:id', async(req,res,next) => {
+    try {
+        console.log(req.body)
+        const update = req.body
+        const user = await User.findByPk(req.params.id)
+        const updatedUser = await user.update(update)
+        res.send(updatedUser)
+    } catch(error) {
+        next(error)
+    }
+})
+
 export default router

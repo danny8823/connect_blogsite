@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { deleteBlog, fetchUserBlogs } from "../Slices/profileSlice";
 import {Button,Card} from 'react-bootstrap'
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import { UpdateUser } from "../UpdateUser/updateUser";
 
 export const Profile = () => {
@@ -24,11 +24,11 @@ export const Profile = () => {
     
     useEffect(() => {
             dispatch(fetchUserBlogs(me.id))
-        },[dispatch, me.id])
+        },[dispatch, me])
 
     return (
         <div>
-            <div className = 'mt-10 mb-10'>
+            <div className = 'm-auto pt-20 w-50 flex flex-col justify-center'>
                 <Card className = 'm-auto'style = {{width: '18rem'}}>
                     <Card.Img variant="top" src={me.image}/>
                     <Card.Body>

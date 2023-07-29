@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { delFav, fetchFavs } from "../Slices/favsSlice";
-import axios from "axios";
+
 export const SideBar = () => {
     const loggedIn = useSelector((state) => !!state.me.me.id)
-    const me = useSelector((state) => state.me.me)
+    const {me} = useSelector((state) => state.me)
     const favs = useSelector((state) => state.favs.favs)
 
     const dispatch = useDispatch()
