@@ -7,11 +7,10 @@ import { Register } from "../Register/Register";
 import { Login } from "../Login/Login";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Slices/authSlice";
-import LogoSvg from '../Logo/Connect_logo.svg'
+import newLogo from '../Logo/connect.svg'
 
 export const NavBar = () => {
     const loggedIn = useSelector((state) => !!state.me.me.id)
-    const admin = useSelector((state) => !!state.me.isAdmin)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -25,23 +24,24 @@ export const NavBar = () => {
     const handleShow2 = () => setShow2(true)
     
     const handleLogout = () => {
-        dispatch(logout())
         navigate('/')
+        dispatch(logout())
+        
     }
 
     return (
         <div>
             {loggedIn ? (
-                <div className = 'flex justify-start bg-sky-300 h-12 items-center w-screen'>
-                    <img src = {LogoSvg} alt = 'connect blog logo' className = 'w-40 h-auto px-10'/>
+                <div className = 'flex justify-start bg-sky-300 h-16 items-center w-screen m-0'>
+                    <img src = {newLogo} alt = 'connect blog logo' className = 'w-40 h-auto px-10'/>
                     <Link className = 'px-5 no-underline text-black' to ='/'>Blogs</Link>
                     <Link className = 'px-5 no-underline text-black' to ='/post'>Post</Link>
                     <Link className = 'px-5 no-underline text-black' onClick={handleLogout}>Logout</Link>
                     <Link className = 'px-5 no-underline text-black' to ='/profile'>Profile</Link>
                 </div>
             ): (
-                <div className = 'flex justify-start bg-sky-300 h-12 items-center'>
-                    <img src = {LogoSvg} alt = 'connect blog logo' className = 'w-40 h-auto px-10'/>
+                <div className = 'flex justify-start bg-sky-300 h-16 items-center w-screen m-0'>
+                    <img src = {newLogo} alt = 'connect blog logo' className = 'w-40 h-auto px-10'/>
                     <Link className = 'px-5 no-underline text-black' to ='/'>Blogs</Link>
                     <Link className = 'px-5 no-underline text-black' onClick={handleShow}>Login</Link>
                         <Modal show = {show} onHide={handleClose}>

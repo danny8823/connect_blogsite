@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import {Button} from 'react-bootstrap'
 import {useDispatch, useSelector} from 'react-redux'
 import { postBlog } from "../Slices/blogSlice";
-
+import {toast} from "react-toastify"
 export const Post = () => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
@@ -15,11 +15,16 @@ export const Post = () => {
     const formHandler = async (e) => {
         e.preventDefault()
         if(title === '' || content === '') {
-            console.log('fields cannot be empty')
+            toast.error('Please do not leave empty input fields!', {
+                positon: 'bottom-right'
+            })
         } else {
             dispatch(postBlog({title, content, userid: user.id}))
             setTitle('')
             setContent('')
+            toast.success('Post successful, please navigate to blogs page to see your post!', {
+                position: 'bottom-right'
+            })
         }
     }
 

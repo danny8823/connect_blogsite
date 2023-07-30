@@ -18,7 +18,7 @@ export const SideBar = () => {
     }
 
     return (
-        <div className = 'h-auto w-5/12 bg-red-300 text-center'>
+        <div className = 'h-auto w-5/12 bg-red-300 text-center m-0'>
             {loggedIn ? (
                 <div className = 'm-auto '>
                     <p className = 'mt-8'>Hello {me.username}</p>

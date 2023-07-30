@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { delComment, fetchComments, postComment } from "../Slices/commentSlice";
 import { Form, Button } from "react-bootstrap";
-import {toast} from 'react-toastify'
+import {toast} from "react-toastify"
+
 export const Comments = ({ me, blog}) => {
     const [post, setPost] = useState()
     const comments = useSelector((state) => state.comments)
@@ -30,11 +31,21 @@ export const Comments = ({ me, blog}) => {
 
     const formHandler = (e) => {
         e.preventDefault()
-        dispatch(postComment({comment: post, blogid: blog.id, userid: me.id, username: me.username}))
-        setPost('')
-        toast.success("Comment posted!", {
-            position: "bottom-right"
-        })
+        if(me.username === undefined) {
+            toast.error('You must be logged in to comment!', {
+                position: "bottom-right"
+            })
+        } else if (post === undefined) {
+            toast.error('You cannot post an empty comment!', {
+                position: "bottom-right"
+            })
+        } else {
+            dispatch(postComment({comment: post, blogid: blog.id, userid: me.id, username: me.username}))
+            setPost('')
+            toast.success('Comment posted!', {
+                position: "bottom-right"
+            })
+        }
     }
 
    
@@ -51,7 +62,7 @@ export const Comments = ({ me, blog}) => {
             <div>
                 {comments && comments.length ? comments.map((comment) => (
                     <div>
-                        <small>{comment.username ? comment.username : "Cannot find username"}</small>&nbsp;<small>{dateConverter(comment.createdAt)}</small>
+                        <small>{comment.username ? comment.username : 'Guest'}</small>&nbsp;<small>{dateConverter(comment.createdAt)}</small>
                         <p>{comment.comment}</p>
                         {usersComment(comment) && (
                             <div>

@@ -50,7 +50,7 @@ export const Blogs = () => {
 
     return (
         <div className = 'flex w-screen'>
-            <div className ='flex flex-col items-center w-screen'>
+            <div className ='flex flex-col items-center w-fit'>
                 {blogs && blogs.length ? (
                     blogs.map((blog) => (
                         <Card variant = 'outlined' key = {blog.id} className = 'w-3/5  pt-10 border-b-2 m-2'>

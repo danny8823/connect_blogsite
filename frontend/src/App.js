@@ -1,8 +1,10 @@
-import { ToastContainer } from 'react-bootstrap';
+
 import './App.css';
 import { NavBar } from './NavBar/NavBar';
 import { AppRoutes } from './Routes';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
