@@ -6,6 +6,9 @@ const router = express.Router()
 router.get('/', async(req,res,next) => {
     try {
         const id = req.query.value
+        if(!id) {
+            return res.status(400).json({error: 'User id is missing'})
+        }
         const fav = await Favorites.findAll({
             where: {
                 userId: id
