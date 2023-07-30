@@ -25,7 +25,8 @@ export const Post = () => {
 
     return (
         <div>
-            <Form onSubmit= {formHandler} className = 'w-96 m-auto'>
+            <h1 className = 'text-center'>Draft your blog here.</h1>
+            <Form onSubmit= {formHandler} className = 'w-8/12 m-auto'>
                 <Form.Group>
                     <Form.Label>Title:</Form.Label>
                     <Form.Control placeholder='Title' type='text' value = {title} onChange={(e) => setTitle(e.target.value)}/>

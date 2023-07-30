@@ -1,26 +1,39 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useParams } from "react-router-dom";
 import { editBlog, fetchBlog } from "../Slices/singleBlogSlice";
 import { Form } from "react-bootstrap";
 import {Button} from 'react-bootstrap'
-
+import { useSelector } from "react-redux";
 export const EditBlog = () => {
     const {id} = useParams()
-    console.log('==<id>' , id)
     const dispatch = useDispatch()
+
+    const blog = useSelector((state) => state.singleBlog)
 
     const [newTitle, setNewTitle] = useState(null)
     const [newContent, setNewContent] = useState(null)
 
-    const formHandler = async(e) => {
+    const formHandler = (e) => {
         e.preventDefault()
-        console.log(newTitle, newContent)
-        await dispatch(editBlog({blogid:id, title:newTitle, content:newContent}))
+        dispatch(editBlog({blogid:id, title:newTitle, content:newContent}))
+        newTitle('')
+        newContent('')
     }
 
+    useEffect(() => {
+        dispatch(fetchBlog(id))
+    },[dispatch, id])
+
+    
+
     return (
-        <div>
+        <div className = 'w-8/12 m-auto'>
+            <h1 className = 'text-center'>Edit your blog.</h1>
+            {blog ? <div>
+                <h1>{blog.title}</h1>
+                <p>{blog.content}</p>
+            </div> : null}
             <Form onSubmit={formHandler}>
                 <Form.Group className= 'mb-3'>
                     <Form.Label>Title</Form.Label>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { fetchBlogs } from "../Slices/blogSlice";
@@ -8,6 +8,8 @@ import { SideBar } from "../Sidebar/SideBar";
 import heartIcon from '../Logo/heart.png'
 import heartFilled from '../Logo/heart-filled.png'
 import { addFavs, delFav} from "../Slices/favsSlice";
+import Card from '@mui/material/Card'
+import { CardActions, CardContent, Typography } from "@mui/material";
 
 export const Blogs = () => {
     const dispatch = useDispatch()
@@ -48,26 +50,30 @@ export const Blogs = () => {
 
     return (
         <div className = 'flex w-screen'>
-            <div className ='h-auto w-8/12 m-auto'>
+            <div className ='flex flex-col items-center w-screen'>
                 {blogs && blogs.length ? (
                     blogs.map((blog) => (
-                        <div key = {blog.id} className = 'w-96 pt-10 border-b-2 m-auto'>
-                            {blog.user && <p>Written by: {blog.user.username}</p>}
-                            <Link className = 'no-underline text-black no-underline' to = {`/${blog.id}`}><h2 className = 'text-center'>{blog.title}</h2></Link>
-                            <p>{blog.content}</p>
-                            <div className = 'flex w-96 justify-end'>
+                        <Card variant = 'outlined' key = {blog.id} className = 'w-96  pt-10 border-b-2 m-2'>
+                            <CardContent>
+                            <Typography gutterBottom variant = 'h5' component="div">
+                                <Link className = 'no-underline text-black no-underline' to = {`/${blog.id}`}><h2 className = 'text-center'>{blog.title}</h2></Link>
+                            </Typography>
+                            <Typography variant = 'body1' color = 'text.primary'>
+                                {blog.content}
+                            </Typography>
+                            {blog.user && <Typography variant = 'body2' color = 'text.secondary' className = 'pt-4'>Written by: {blog.user.username}</Typography>}
+                            </CardContent>
+                            <CardActions>
                                 {isBlogFav(blog.title) ? 
                                     <img onClick = {() => deleteFavHandler(blog.id)} className = 'w-10 h-10' src = {heartFilled} alt = 'Freepik heart-filled icon'/> :
                                     <img  onClick={() => favoriteHandler(blog.title, blog.content, me.id, blog.id)} className = 'w-10 h-10' src = {heartIcon} alt = 'Freepik heart icon'/>
                                 }
-                            
-                            </div>
-                        </div>
+                            </CardActions>
+                        </Card>
                     ))
                 ): (
                     <p>No blogs to show!</p>
                 )}
-                
             </div>
             <SideBar/>
         </div>
