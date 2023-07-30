@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import {Spinner} from 'react-bootstrap'
 import { SideBar } from "../Sidebar/SideBar";
 import heartIcon from '../Logo/heart.png'
-import heartFilled from '../Logo/heart-filled.png'
+import heartFilled from '../Logo/redheart.png'
 import { addFavs, delFav} from "../Slices/favsSlice";
 import Card from '@mui/material/Card'
 import { CardActions, CardContent, Typography } from "@mui/material";
@@ -53,13 +53,13 @@ export const Blogs = () => {
             <div className ='flex flex-col items-center w-screen'>
                 {blogs && blogs.length ? (
                     blogs.map((blog) => (
-                        <Card variant = 'outlined' key = {blog.id} className = 'w-96  pt-10 border-b-2 m-2'>
+                        <Card variant = 'outlined' key = {blog.id} className = 'w-3/5  pt-10 border-b-2 m-2'>
                             <CardContent>
                             <Typography gutterBottom variant = 'h5' component="div">
                                 <Link className = 'no-underline text-black no-underline' to = {`/${blog.id}`}><h2 className = 'text-center'>{blog.title}</h2></Link>
                             </Typography>
                             <Typography variant = 'body1' color = 'text.primary'>
-                                {blog.content}
+                                {blog.content.slice(0,200)} ........
                             </Typography>
                             {blog.user && <Typography variant = 'body2' color = 'text.secondary' className = 'pt-4'>Written by: {blog.user.username}</Typography>}
                             </CardContent>

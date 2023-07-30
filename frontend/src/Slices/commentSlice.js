@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 export const fetchComments = createAsyncThunk('get/comments', async(id) => {
     try {
@@ -39,6 +40,9 @@ const commentSlice = createSlice({
         })
         builder.addCase(postComment.fulfilled, (state,action) => {
             state.push(action.payload)
+            toast.success("Comment posted!", {
+                position: "bottom-right"
+            })
         })
         builder.addCase(delComment.fulfilled, (state, action) => {
             const deleted = state.filter((comment) => comment.id !== action.payload.id)

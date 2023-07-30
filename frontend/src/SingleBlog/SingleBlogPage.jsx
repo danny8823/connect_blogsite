@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchBlog } from "../Slices/singleBlogSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchComments, postComment } from "../Slices/commentSlice";
-import {Form, Button} from 'react-bootstrap'
 import { Comments } from "./Comments";
 
 export const SingleBlog = () => {
@@ -11,7 +9,6 @@ export const SingleBlog = () => {
     const dispatch = useDispatch()
 
     const blog = useSelector((state) => state.singleBlog)
-    // const comments = useSelector((state) => state.comments)
     const me = useSelector((state) => state.me.me)
 
     useEffect(() => {
@@ -27,7 +24,7 @@ export const SingleBlog = () => {
     return (
         <div className = 'w-3/5 m-auto p-10'>
             <div className = 'border-b-2'>
-                <h1>{blog.title}</h1>
+                <h1 className = 'text-center'>{blog.title}</h1>
                 <p>{blog.content}</p>
                 {blog.user && blog.user.username && <small>Author: {blog.user.username}</small>}
             </div>

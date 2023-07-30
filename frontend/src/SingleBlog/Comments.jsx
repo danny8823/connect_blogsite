@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { delComment, fetchComments, postComment } from "../Slices/commentSlice";
 import { Form, Button } from "react-bootstrap";
-
+import {toast} from 'react-toastify'
 export const Comments = ({ me, blog}) => {
     const [post, setPost] = useState()
     const comments = useSelector((state) => state.comments)
@@ -32,6 +32,9 @@ export const Comments = ({ me, blog}) => {
         e.preventDefault()
         dispatch(postComment({comment: post, blogid: blog.id, userid: me.id, username: me.username}))
         setPost('')
+        toast.success("Comment posted!", {
+            position: "bottom-right"
+        })
     }
 
    
@@ -41,7 +44,7 @@ export const Comments = ({ me, blog}) => {
             <div>
                 <Form onSubmit={formHandler}> 
                     <Form.Label>Comment:</Form.Label>
-                    <Form.Control type = 'text' as = 'textarea' value = {post} onChange={(e) => setPost(e.target.value)}/>
+                    <Form.Control className = 'mb-2'type = 'text' as = 'textarea' value = {post} onChange={(e) => setPost(e.target.value)}/>
                     <Button variant = 'primary' type = 'submit'>Submit</Button>
                 </Form>
             </div>
