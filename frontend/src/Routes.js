@@ -8,6 +8,7 @@ import { Profile } from './Profile/Profile'
 import { useDispatch } from 'react-redux'
 import { me } from './Slices/authSlice'
 import { EditBlog } from './EditBlog/Edit'
+import { AboutUs } from './About/About'
 
 export const AppRoutes = () => {
     const dispatch = useDispatch()
@@ -24,6 +25,8 @@ export const AppRoutes = () => {
                 <Route path = '/login' element={<Login/>}/>
                 <Route path = '/profile' element = {<Profile/>}/>
                 <Route path = '/edit/:id' element = {<EditBlog/>}/>
+                <Route path = '/about' element={<AboutUs/>}/>
+                <Route path = '/contact' element={<AboutUs/>}/>
             </Routes>
         </div>
     )
