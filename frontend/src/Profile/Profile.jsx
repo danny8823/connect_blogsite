@@ -29,7 +29,7 @@ export const Profile = () => {
     return (
         <div>
             <div className = 'm-auto pt-20 w-50 flex flex-col justify-center'>
-                <Card className = 'm-auto'style = {{width: '18rem'}}>
+                <Card  style = {{width: '18rem'}}>
                     <Card.Img variant="top" src={me.image}/>
                     <Card.Body>
                         <Card.Title>{me.username}</Card.Title>
