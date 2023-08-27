@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const fetchBlogs = createAsyncThunk('get/blogs', async() => {
     try {
-        const {data} = await axios.get('https://connect-blog-server.onrender.com/api/blogs')
+        const {data} = await axios.get('https://connect-blog-server.onrender.com/api/blogs/')
         return data
     } catch (error) {
         console.error(error)
@@ -12,7 +12,7 @@ export const fetchBlogs = createAsyncThunk('get/blogs', async() => {
 
 export const postBlog = createAsyncThunk('post/blog', async({title, content, userid}) => {
     try {
-        const {data} = await axios.post('https://connect-blog-server.onrender.com/api/blogs', {title , content, userid})
+        const {data} = await axios.post('https://connect-blog-server.onrender.com/api/blogs/', {title , content, userid})
         return data
     } catch(error) {
         console.error(error)
