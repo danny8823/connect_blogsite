@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 
 export const fetchComments = createAsyncThunk('get/comments', async(id) => {
     try {
-        const {data} = await axios.get(`/api/comments`,{params: {value: id}})
+        const {data} = await axios.get(`https://connect-blog-server.onrender.com/api/comments`,{params: {value: id}})
         return data
     } catch (error) {
         throw new Error(error)
@@ -13,7 +13,7 @@ export const fetchComments = createAsyncThunk('get/comments', async(id) => {
 
 export const postComment = createAsyncThunk('post/comment', async({comment,blogid,userid, username}) => {
     try {
-        const { data } = await axios.post(`/api/comments`, {comment, blogid, userid, username})
+        const { data } = await axios.post(`https://connect-blog-server.onrender.com/api/comments`, {comment, blogid, userid, username})
         
         return data
     } catch(error) {
@@ -23,7 +23,7 @@ export const postComment = createAsyncThunk('post/comment', async({comment,blogi
 
 export const delComment = createAsyncThunk('del/comment', async(id) => {
     try {
-        const {data} = await axios.delete(`/api/comments/${id}`)
+        const {data} = await axios.delete(`https://connect-blog-server.onrender.com/api/comments/${id}`)
         return data
     } catch(error) {
         throw new Error(error)

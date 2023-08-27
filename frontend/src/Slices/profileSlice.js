@@ -6,7 +6,7 @@ export const fetchUserBlogs = createAsyncThunk('get/userblog', async(id) => {
         if(id === null || id === undefined) {
             return;
         }
-        const {data} = await axios.get(`/api/blogs/user/${id}`)
+        const {data} = await axios.get(`https://connect-blog-server.onrender.com/api/blogs/users/${id}`)
         return data
     } catch(error) {
         throw new Error(error)
@@ -15,7 +15,7 @@ export const fetchUserBlogs = createAsyncThunk('get/userblog', async(id) => {
 
 export const deleteBlog = createAsyncThunk('delete/userblog', async(id) => {
     try {
-        const {data} = await axios.delete(`/api/blogs/${id}`)
+        const {data} = await axios.delete(`https://connect-blog-server.onrender.com/api/blogs/${id}`)
         return data
     } catch(error) {
         throw new Error(error)

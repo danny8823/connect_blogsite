@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchFavs = createAsyncThunk('fetch/favs', async(id) => {
     try {
-        const {data} = await axios.get(`/api/favs`, {params: {value: id}})
+        const {data} = await axios.get(`https://connect-blog-server.onrender.com/api/favs`, {params: {value: id}})
         return data
     } catch(error) {
         throw new Error(error)
@@ -12,7 +12,7 @@ export const fetchFavs = createAsyncThunk('fetch/favs', async(id) => {
 
 export const addFavs = createAsyncThunk('add/favs', async({title, content, userId, blogId}) => {
     try {
-            const {data} = await axios.post(`/api/favs`, {title, content, userId, blogId})
+            const {data} = await axios.post(`https://connect-blog-server.onrender.com/api/favs`, {title, content, userId, blogId})
             return data
     } catch(error) {
         throw new Error(error)
@@ -21,7 +21,7 @@ export const addFavs = createAsyncThunk('add/favs', async({title, content, userI
 
 export const delFav = createAsyncThunk('delete/fav', async(id) => {
     try {
-        const {data} = await axios.delete(`/api/favs/${id}`)
+        const {data} = await axios.delete(`https://connect-blog-server.onrender.com/api/favs/${id}`)
         return data
     } catch(error) {
         throw new Error(error)

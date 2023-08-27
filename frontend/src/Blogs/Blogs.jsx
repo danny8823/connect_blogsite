@@ -16,6 +16,7 @@ export const Blogs = () => {
     const me = useSelector((state) => state.me.me)
     const blogs = useSelector((state) => state.blogs)
     const {favs} = useSelector((state) => state.favs)
+    
     useEffect(() => {
         dispatch(fetchBlogs())
     },[dispatch])

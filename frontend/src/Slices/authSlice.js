@@ -29,7 +29,7 @@ export const me = createAsyncThunk('auth/me', async () => {
     'auth/authenticate',
     async ({ username, email, password, method }, thunkAPI) => {
       try {
-        const res = await axios.post(`/auth/${method}`, { username,email, password });
+        const res = await axios.post(`https://connect-blog-server.onrender.com/auth/${method}`, { username,email, password });
         window.localStorage.setItem(TOKEN, res.data.token);
         thunkAPI.dispatch(me()) ;
       } catch (err) {
